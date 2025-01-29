@@ -1,10 +1,12 @@
 package models
 
-import "gorm.io/gorm"
-
-// Estrutura model do Produto
+// Product representa um produto no sistema
+// swagger:model Product
 type Product struct {
-	gorm.Model
-	Name  string  `json:"name"`
-	Price float64 `json:"price"`
+	ID        uint    `json:"id"`
+	CreatedAt string  `json:"created_at"`
+	UpdatedAt string  `json:"updated_at"`
+	DeletedAt *string `json:"deleted_at,omitempty"`
+	Name      string  `json:"name"`
+	Price     float64 `json:"price"`
 }

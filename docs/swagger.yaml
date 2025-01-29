@@ -1,4 +1,157 @@
+definitions:
+  models.Product:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+      updated_at:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /products:
+    get:
+      consumes:
+      - application/json
+      description: Retorna um array de produtos do banco de dados
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Product'
+            type: array
+      summary: Lista todos os produtos
+      tags:
+      - produtos
+    post:
+      consumes:
+      - application/json
+      description: Adiciona um novo produto ao banco de dados
+      parameters:
+      - description: Dados do produto
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.Product'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Product'
+        "400":
+          description: Erro ao processar JSON
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Cria um produto
+      tags:
+      - produtos
+  /products/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove um produto do banco de dados com base no ID fornecido
+      parameters:
+      - description: ID do produto
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Produto deletado com sucesso
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Produto não encontrado
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Deleta um produto
+      tags:
+      - produtos
+    get:
+      consumes:
+      - application/json
+      description: Retorna um único produto com base no ID fornecido
+      parameters:
+      - description: ID do produto
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Product'
+        "404":
+          description: Produto não encontrado
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Busca um produto por ID
+      tags:
+      - produtos
+    put:
+      consumes:
+      - application/json
+      description: Modifica os dados de um produto existente com base no ID
+      parameters:
+      - description: ID do produto
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Dados atualizados do produto
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.Product'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Produto atualizado com sucesso
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Erro ao processar JSON
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Produto não encontrado
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualiza um produto
+      tags:
+      - produtos
 swagger: "2.0"
