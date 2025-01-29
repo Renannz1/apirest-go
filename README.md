@@ -53,7 +53,5 @@ Você pode usar o **Postman**, **Insomnia** ou **cURL** para testar os endpoints
 | `PUT`   | `/products/:id` | Atualizar um produto |
 | `DELETE` | `/products/:id` | Remover um produto |
 
----
 
-Feito com  por [Renan Magalhães]([https://github.com/seu-usuario](https://github.com/Renannz1)) 🚀
 
