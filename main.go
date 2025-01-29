@@ -1,6 +1,7 @@
 package main
 
 import (
+	"project_api_go/database"
 	"project_api_go/routes"
 
 	"github.com/gin-gonic/gin"
@@ -9,12 +10,9 @@ import (
 func main() {
 	r := gin.Default()
 
+	database.ConnectDatabase()
+
 	routes.ProductRoutes(r)
 
 	r.Run()
-
-	// controllers.GetProductByID(1)
-	// controllers.UpdateProductByID(1, "JBL", 2300)
-	// controllers.GetProductByID(1)
-
 }
